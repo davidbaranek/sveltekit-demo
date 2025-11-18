@@ -57,17 +57,9 @@
     </table>
 </div>
 
-<div>
-    <h2>Pagination:</h2>
-    <label for="limit">Limit:</label>
-    <input name="limit" type="number" bind:value={params.limit} min="1" />
-    <button
-        onclick={() => (params.page = params.page - 1)}
-        disabled={posts.loading}>Previous</button
-    >
-    <p>Page {pagination.page} from total {pagination.totalPages}</p>
-    <button
-        onclick={() => (params.page = params.page + 1)}
-        disabled={posts.loading}>Next</button
-    >
-</div>
+<Pagination
+    bind:page={params.page}
+    bind:limit={params.limit}
+    totalPages={pagination.totalPages}
+    loading={$effect.pending() > 0}
+/>
