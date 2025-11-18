@@ -3,6 +3,7 @@
     import { navigating } from "$app/state";
     import * as z from "zod";
     import { getPosts } from "$lib/data.remote";
+    import Pagination from "./Pagination.svelte";
 
     const GetPostsQuery = z.object({
         page: z.coerce.number<number>().int().min(1).default(1),
@@ -61,5 +62,5 @@
     bind:page={params.page}
     bind:limit={params.limit}
     totalPages={pagination.totalPages}
-    loading={$effect.pending() > 0}
+    loading={posts.loading}
 />
